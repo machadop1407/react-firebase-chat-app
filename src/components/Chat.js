@@ -23,7 +23,7 @@ export const Chat = ({ room }) => {
       where("room", "==", room),
       orderBy("createdAt")
     );
-    const unsuscribe = onSnapshot(queryMessages, (snapshot) => {
+    const unsubscribe = onSnapshot(queryMessages, (snapshot) => {
       let messages = [];
       snapshot.forEach((doc) => {
         messages.push({ ...doc.data(), id: doc.id });
@@ -32,7 +32,7 @@ export const Chat = ({ room }) => {
       setMessages(messages);
     });
 
-    return () => unsuscribe();
+    return () => unsubscribe();
   }, []);
 
   const handleSubmit = async (event) => {
